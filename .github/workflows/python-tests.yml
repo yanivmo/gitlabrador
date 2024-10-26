@@ -1,4 +1,4 @@
-name: Python Tests
+name: Python tests
 
 on:
   push:
@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  lint_and_test:
+    name: lint and test
     runs-on: ubuntu-latest
 
     steps:
