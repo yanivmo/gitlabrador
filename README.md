@@ -1,4 +1,6 @@
-# GitLabrador
+# 🐕 GitLabrador
+
+## Work in progress ▮▮▮▯▯▯▯▯▯▯
 
 ```
 poetry install
