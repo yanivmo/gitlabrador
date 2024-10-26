@@ -1,16 +1,6 @@
-import asyncio
-
-from rich.style import Style
-from rich.text import Text
-from textual import work
 from textual.app import App
-from textual.widgets import OptionList, Tree
-from textual.widgets.tree import TreeNode
 
 from .screens.welcome_screen import WelcomeScreen
-from ..api import GitLabClient
-from ..config import settings
-from ..models import Group
 
 
 class Tui(App):
@@ -30,4 +20,3 @@ class Tui(App):
     def action_toggle_dark(self) -> None:
         """Toggle dark to light mode and back."""
         self.dark = not self.dark
-
