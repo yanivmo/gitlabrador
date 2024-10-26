@@ -31,4 +31,4 @@ jobs:
     - name: Lint (flake8)
       run: poetry run flake8 . --count --show-source --statistics
     - name: Test (pytest)
-      run: poetry run pytest tests
+      run: DYNACONF_GITLAB__TOKEN=dummy-token poetry run pytest tests

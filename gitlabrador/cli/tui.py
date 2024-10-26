@@ -10,7 +10,7 @@ def tui():
     root_group = settings.gitlab.default_group
     if not root_group:
         raise click.UsageError(
-            "default-group not been set. Use config command to set the value"
+            "default-group has not been set. Use config command to set its value"
         )
     app = Tui()
     app.run(inline=True)

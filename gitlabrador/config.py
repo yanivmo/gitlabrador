@@ -8,7 +8,6 @@ from gitlabrador.models import Project
 user_settings_path = str(Path.home() / ".gitlabrador.toml")
 
 settings = Dynaconf(
-    envvar_prefix="GITLAB",
     merge_enabled=True,
     settings_files=["settings.toml", ".secrets.toml", user_settings_path],
 )
