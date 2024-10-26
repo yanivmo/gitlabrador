@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "gitlabrador"
+version = "0.1.0"
+description = "GitLabrador"
+authors = ["Yaniv Mordekhay <yanivmo@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+black = "^24.10.0"
+gql = {extras = ["aiohttp"], version = "^3.5.0"}
+click = "^8.1.7"
+dynaconf = "^3.2.6"
+flake8 = "^7.1.1"
+pytest = "^8.3.3"
+pytest-asyncio = "^0.24.0"
+pytest-mock = "^3.14.0"
+rich = "^13.9.3"
+textual = "^0.84.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

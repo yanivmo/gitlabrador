@@ -1,0 +1,7 @@
+[gitlab]
+graphql_url = "https://gitlab.com/api/graphql"
+default_group = ""
+
+[app]
+recent_projects = []
+max_recent_projects = 5

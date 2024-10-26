@@ -1,0 +1,20 @@
+WelcomeScreen #everything {
+    align: center middle;
+}
+
+WelcomeScreen #content {
+    max-width: 60;
+    max-height: 20;
+}
+
+WelcomeScreen #label-prompt {
+    margin-bottom: 1;
+}
+
+WelcomeScreen OptionList {
+    height: 7;
+}
+
+WelcomeScreen #button-all {
+    margin-top: 1;
+}
