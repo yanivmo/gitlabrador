@@ -1,7 +1,9 @@
+import sys
 from datetime import datetime
 from pathlib import Path
 
 from dynaconf import Dynaconf, loaders
+from rich.console import Console
 
 from gitlabrador.models import Project
 
@@ -30,6 +32,33 @@ def save_recent_project(project: Project):
     app_settings.recent_projects = recent
     settings.update({"app": app_settings})
     save_user_settings()
+
+
+def validate_gitlab_token():
+    console = Console()
+
+    if "gitlab" not in settings or "token" not in settings.gitlab:
+        console.print("\nError: GitLab token not configured.", style="white on red")
+        console.print(
+            "Generate personal token at [cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
+            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] command."
+        )
+        sys.exit(1)
+
+    if len(settings.gitlab.token) < 10:
+        console.print(
+            "\nError: Configured GitLab token is too short to be a real token.",
+            style="white on red",
+        )
+        console.print(
+            "Generate personal token at [cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
+            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] command."
+        )
+        sys.exit(2)
+
+
+def validate_settings():
+    validate_gitlab_token()
 
 
 def save_user_settings():

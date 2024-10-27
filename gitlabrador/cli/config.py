@@ -52,3 +52,18 @@ def default_group(group_full_path):
         text.append("\n  ").append_text(keyValue("name:    ", group.name))
         text.append("\n  ").append_text(keyValue("fullPath:", group.full_path))
         Console().print(text)
+
+
+@config_group.command()
+def gitlab_token():
+    """
+    Set GitLab access token.
+
+    Prompts user to enter the token interactively.
+
+    Generate tokens via GitLab user settings page:
+    https://gitlab.com/-/user_settings/personal_access_tokens
+    """
+    token = click.prompt("Enter GitLab access token", hide_input=True)
+    settings.gitlab.token = token
+    save_user_settings()
