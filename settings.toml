@@ -3,5 +3,8 @@ graphql_url = "https://gitlab.com/api/graphql"
 default_group = ""
 
 [app]
+# Each item is a tuple, where the first item is the timestamp of the last
+# access to the project, and the second item is dictionary of project
+# properties. See Project model for more information
 recent_projects = []
 max_recent_projects = 5

@@ -2,9 +2,18 @@ WelcomeScreen #everything {
     align: center middle;
 }
 
-WelcomeScreen #content {
-    max-width: 60;
+WelcomeScreen Horizontal {
+    /*background: blue;*/
+    /*width: auto;*/
+    max-width: 80;
     max-height: 20;
+}
+
+WelcomeScreen #banner {
+    color: ansi_bright_green;
+    width: 30;
+    height: 14;
+    margin-right: 3;
 }
 
 WelcomeScreen #label-prompt {
