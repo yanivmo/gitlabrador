@@ -5,7 +5,11 @@ from dynaconf import Dynaconf
 
 DEFAULT_SETTINGS: Final = {
     "gitlab": {"default_group": {"name": "abc", "full_path": "path/to/abc"}},
-    "app": {"recent_projects": []},
+    "app": {
+        "recent_projects": [],
+        "max_recent_projects": 3,
+    },
+    "override_user_settings": "test-settings-state.deleteme.toml",
 }
 
 

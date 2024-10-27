@@ -35,6 +35,9 @@ class WelcomeScreen(Screen):
     def on_mount(self):
         self.refresh_recent_projects()
 
+    def on_resize(self):
+        self.refresh_recent_projects()
+
     def refresh_recent_projects(self):
         self.recent_projects.clear_options()
 
@@ -44,8 +47,9 @@ class WelcomeScreen(Screen):
             )
             self.recent_projects.disabled = True
         else:
-            for access_time, proj in settings.app.recent_projects:
-                text = Text(proj.name).append(
+            for item in settings.app.recent_projects:
+                proj = item.project
+                text = Text(str(proj.name)).append(
                     f" ({proj.name_with_namespace})", "gray69"
                 )
                 text.truncate(self.recent_projects.content_size.width)

@@ -130,3 +130,6 @@ cython_debug/
 
 # Ignore dynaconf secret files
 .secrets.*
+
+# Config file generated during tests execution
+test-settings-state.deleteme.toml
