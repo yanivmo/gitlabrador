@@ -16,3 +16,4 @@ poetry run python -m gitlabrador --help
 `<GROUP>` is the name of the group that contains your GitLab projects.
 GitLabrador will show only the projects in this group on in its descendant
 groups.
+More on GitLabs groups in the [documentation](https://docs.gitlab.com/ee/user/group/).

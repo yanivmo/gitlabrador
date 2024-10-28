@@ -1,10 +1,9 @@
-import sys
 from datetime import datetime
 from pathlib import Path
 
 from dynaconf import Dynaconf, loaders
-from rich.console import Console
 
+from gitlabrador.errors import GlbException
 from gitlabrador.models import Project
 
 DEFAULT_USER_SETTINGS_LOCATION = str(Path.home() / ".gitlabrador.toml")
@@ -35,53 +34,36 @@ def save_recent_project(project: Project):
 
 
 def validate_gitlab_token():
-    console = Console()
-
     if "gitlab" not in settings or "token" not in settings.gitlab:
-        console.print("\nError: GitLab token not configured.", style="white on red")
-        console.print(
-            "Generate personal token at "
-            + "[cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
-            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] "
-            + "command."
+        raise GlbException(
+            "[white on red]Error: GitLab token not configured.[/]\n"
+            + "Generate personal token at "
+            + "[cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/]\n"
+            + "then configure using [cyan]gitlabrador config gitlab-token[/] command."
         )
-        sys.exit(1)
 
     if len(settings.gitlab.token) < 10:
-        console.print(
-            "\nError: Configured GitLab token is too short to be a real token.",
-            style="white on red",
+        raise GlbException(
+            "[white on red]Error: Configured GitLab token is too short to be a real"
+            + " token.[/]\nGenerate personal token at "
+            + "[cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/]\n"
+            + "then configure using [cyan]gitlabrador config gitlab-token[/] command."
         )
-        console.print(
-            "Generate personal token at "
-            + "[cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
-            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] "
-            + "command."
-        )
-        sys.exit(2)
 
 
 def validate_gitlab_default_group():
-    console = Console()
-
     if "gitlab" not in settings or "default_group" not in settings.gitlab:
-        console.print(
-            "\nError: GitLab default group not configured.", style="white on red"
+        raise GlbException(
+            "[white on red]Error: GitLab default group not configured.[/]\n"
+            + "Configure using [cyan]gitlabrador config default_group[/] command.",
         )
-        console.print(
-            "Configure using [cyan]gitlabrador config default_group[/cyan] command."
-        )
-        sys.exit(1)
 
     if len(settings.gitlab.default_group) < 1:
-        console.print(
-            "\nError: Configured GitLab default group is too short.",
-            style="white on red",
+        raise GlbException(
+            "[white on red]Error: Configured GitLab default group "
+            + f'[cyan]"{settings.gitlab.default_group}"[/] is too short.[/]\n'
+            + "Configure using [cyan]gitlabrador config default_group[/] command."
         )
-        console.print(
-            "Configure using [cyan]gitlabrador config default_group[/cyan] command."
-        )
-        sys.exit(2)
 
 
 def validate_settings():
