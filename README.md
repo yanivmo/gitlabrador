@@ -9,5 +9,10 @@
 
 ```
 poetry install
+poetry run python -m gitlabrador config gitlab-token
+poetry run python -m gitlabrador config default-group <GROUP>
 poetry run python -m gitlabrador --help
 ```
+`<GROUP>` is the name of the group that contains your GitLab projects.
+GitLabrador will show only the projects in this group on in its descendant
+groups.

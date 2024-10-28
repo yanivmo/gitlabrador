@@ -40,8 +40,10 @@ def validate_gitlab_token():
     if "gitlab" not in settings or "token" not in settings.gitlab:
         console.print("\nError: GitLab token not configured.", style="white on red")
         console.print(
-            "Generate personal token at [cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
-            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] command."
+            "Generate personal token at "
+            + "[cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
+            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] "
+            + "command."
         )
         sys.exit(1)
 
@@ -51,8 +53,10 @@ def validate_gitlab_token():
             style="white on red",
         )
         console.print(
-            "Generate personal token at [cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
-            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] command."
+            "Generate personal token at "
+            + "[cyan]https://gitlab.com/-/user_settings/personal_access_tokens[/cyan]\n"
+            + "then configure using [cyan]gitlabrador config gitlab-token[/cyan] "
+            + "command."
         )
         sys.exit(2)
 
