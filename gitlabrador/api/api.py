@@ -6,7 +6,7 @@ from gql.transport.aiohttp import AIOHTTPTransport
 
 from .gql_executor import QueryExecutor
 from .queries import get_group, get_descendant_groups, get_projects
-from ..config import settings
+from ..config import settings, validate_gitlab_token
 from ..models import Group, Project
 
 REQUEST_TIMEOUT_SECONDS: Final = 60
@@ -16,6 +16,8 @@ LIST_START_CURSOR: Final = ""
 
 class GitLabClient:
     def __init__(self):
+        validate_gitlab_token()
+
         transport = AIOHTTPTransport(
             url=settings.gitlab.graphql_url,
             headers={"Authorization": f"Bearer {settings.gitlab.token}"},

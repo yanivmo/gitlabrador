@@ -48,6 +48,7 @@ class WelcomeScreen(Screen):
             self.recent_projects.disabled = True
         else:
             for item in settings.app.recent_projects:
+                print("CCC", settings.app.recent_projects)
                 proj = item.project
                 text = Text(str(proj.name)).append(
                     f" ({proj.name_with_namespace})", "gray69"

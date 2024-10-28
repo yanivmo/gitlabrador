@@ -77,4 +77,7 @@ async def test_screen_has_recent_projects(mocker, mocked_settings):
 
             assert str(option.prompt).startswith(
                 recent_projects[i]["project"]["name"]
-            ), f"{i}: '{option.prompt}' not starting with '{recent_projects[i]["project"]["name"]}'"
+            ), (
+                f"{i}: '{option.prompt}' not starting with "
+                + f"'{recent_projects[i]["project"]["name"]}'"
+            )
