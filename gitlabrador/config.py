@@ -57,8 +57,32 @@ def validate_gitlab_token():
         sys.exit(2)
 
 
+def validate_gitlab_default_group():
+    console = Console()
+
+    if "gitlab" not in settings or "default_group" not in settings.gitlab:
+        console.print(
+            "\nError: GitLab default group not configured.", style="white on red"
+        )
+        console.print(
+            "Configure using [cyan]gitlabrador config default_group[/cyan] command."
+        )
+        sys.exit(1)
+
+    if len(settings.gitlab.default_group) < 1:
+        console.print(
+            "\nError: Configured GitLab default group is too short.",
+            style="white on red",
+        )
+        console.print(
+            "Configure using [cyan]gitlabrador config default_group[/cyan] command."
+        )
+        sys.exit(2)
+
+
 def validate_settings():
     validate_gitlab_token()
+    validate_gitlab_default_group()
 
 
 def save_user_settings():
