@@ -8,6 +8,7 @@ from gitlabrador.tui import Tui
 @pytest.mark.asyncio
 async def test_screen_no_recent_projects(mocker, mocked_settings):
     mocker.patch("gitlabrador.tui.screens.welcome_screen.settings", new=mocked_settings)
+    mocker.patch("gitlabrador.tui.screens.welcome_screen.GitLabClient", autospec=True)
 
     app = Tui()
     async with app.run_test() as pilot:

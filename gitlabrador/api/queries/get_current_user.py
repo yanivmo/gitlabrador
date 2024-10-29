@@ -4,13 +4,13 @@ from ..gql_executor import QueryExecutor
 
 def build_query() -> str:
     return """
-        query {{
-          currentUser {{
+        query {
+          currentUser {
             id
             username
             name
-          }}
-        }}"""
+          }
+        }"""
 
 
 async def query(executor: QueryExecutor) -> CurrentUser:
