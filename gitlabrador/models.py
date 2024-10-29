@@ -3,7 +3,9 @@ from dataclasses import dataclass, asdict
 
 @dataclass
 class CurrentUser:
-    """GitLab CurrentUser : https://docs.gitlab.com/ee/api/graphql/reference/#currentuser"""
+    """
+    GitLab CurrentUser: https://docs.gitlab.com/ee/api/graphql/reference/#currentuser
+    """
 
     id: str
     username: str
@@ -12,7 +14,9 @@ class CurrentUser:
 
 @dataclass
 class Group:
-    """GitLab Group: https://docs.gitlab.com/ee/api/graphql/reference/#group"""
+    """
+    GitLab Group: https://docs.gitlab.com/ee/api/graphql/reference/#group
+    """
 
     id: str
     name: str
@@ -24,7 +28,9 @@ class Group:
 
 @dataclass
 class Project:
-    """GitLab Project: https://docs.gitlab.com/ee/api/graphql/reference/#project"""
+    """
+    GitLab Project: https://docs.gitlab.com/ee/api/graphql/reference/#project
+    """
 
     id: str
     name: str

@@ -3,7 +3,7 @@ from ..gql_executor import QueryExecutor
 
 
 def build_query() -> str:
-    return f"""
+    return """
         query {{
           currentUser {{
             id
