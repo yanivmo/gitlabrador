@@ -19,14 +19,14 @@ DEFAULT_SETTINGS: Final = {
 
 
 @pytest.fixture
-def mocked_settings(mocker):
+def mocked_settings():
     mock_conf = Dynaconf()
     mock_conf.update(DEFAULT_SETTINGS)
     return mock_conf
 
 
 @pytest.fixture(autouse=True)
-def default_test_token():
+def default_gitlab_config():
     settings.update(
         {
             "gitlab": {

@@ -5,7 +5,7 @@ from gql import Client
 from gql.transport.aiohttp import AIOHTTPTransport
 
 from .gql_executor import QueryExecutor
-from .queries import get_group, get_descendant_groups, get_projects
+from .queries import get_group, get_descendant_groups, get_projects, get_current_user
 from ..config import settings, validate_gitlab_token
 from ..models import Group, Project
 
@@ -33,6 +33,9 @@ class GitLabClient:
         async with self.graphql as session:
             self.session = session
             yield
+
+    async def get_current_user(self):
+        return await get_current_user.query(QueryExecutor(self.session))
 
     async def get_group(self, group_full_path: str) -> Group | None:
         return await get_group.query(QueryExecutor(self.session), group_full_path)

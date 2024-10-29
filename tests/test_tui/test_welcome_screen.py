@@ -61,6 +61,7 @@ async def test_screen_has_recent_projects(mocker, mocked_settings):
     ]
     mocked_settings.update({"app": {"recent_projects": recent_projects}}, merge=True)
     mocker.patch("gitlabrador.tui.screens.welcome_screen.settings", new=mocked_settings)
+    mocker.patch("gitlabrador.tui.screens.welcome_screen.GitLabClient", autospec=True)
 
     app = Tui()
     async with app.run_test() as pilot:

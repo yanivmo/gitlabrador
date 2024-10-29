@@ -1,5 +1,5 @@
 Screen {
     &:inline {
-        height: 60vh;
+        height: 25;
     }
 }

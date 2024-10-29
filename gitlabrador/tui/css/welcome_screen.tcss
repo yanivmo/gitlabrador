@@ -2,9 +2,14 @@ WelcomeScreen #everything {
     align: center middle;
 }
 
+WelcomeScreen #welcome-label {
+    content-align: center top;
+    text-style: bold;
+    color: cyan;
+    margin: 2 0 2 0;
+}
+
 WelcomeScreen Horizontal {
-    /*background: blue;*/
-    /*width: auto;*/
     max-width: 80;
     max-height: 20;
 }
@@ -22,6 +27,7 @@ WelcomeScreen #label-prompt {
 
 WelcomeScreen OptionList {
     height: 7;
+    border: white;
 }
 
 WelcomeScreen #button-all {
