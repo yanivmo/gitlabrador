@@ -6,11 +6,12 @@ from dynaconf import Dynaconf, loaders
 from gitlabrador.errors import GlbException
 from gitlabrador.models import Project
 
-DEFAULT_USER_SETTINGS_LOCATION = str(Path.home() / ".gitlabrador.toml")
+DEFAULT_USER_SETTINGS_LOCATION = str(Path.home() / ".gitlabrador.yaml")
 
 settings = Dynaconf(
     merge_enabled=True,
-    settings_files=["settings.toml", ".secrets.toml", DEFAULT_USER_SETTINGS_LOCATION],
+    core_loaders=["YAML"],
+    settings_files=["settings.yaml", ".secrets.yaml", DEFAULT_USER_SETTINGS_LOCATION],
 )
 
 

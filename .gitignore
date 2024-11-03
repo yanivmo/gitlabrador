@@ -132,4 +132,4 @@ cython_debug/
 .secrets.*
 
 # Config file generated during tests execution
-test-settings-state.deleteme.toml
+test-settings-state.deleteme.yaml

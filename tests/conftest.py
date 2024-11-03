@@ -14,7 +14,7 @@ DEFAULT_SETTINGS: Final = {
         "recent_projects": [],
         "max_recent_projects": 3,
     },
-    "override_user_settings": "test-settings-state.deleteme.toml",
+    "override_user_settings": "test-settings-state.deleteme.yaml",
 }
 
 
