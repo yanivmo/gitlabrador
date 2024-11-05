@@ -1,27 +1,41 @@
 import pytest
 from textual.widgets import OptionList
 
-from gitlabrador.models import Project
+from gitlabrador.models import Project, CurrentUser
 from gitlabrador.tui import Tui
+from gitlabrador.tui.screens.welcome_screen import WelcomeScreen
+
+
+@pytest.fixture
+def tui() -> Tui:
+    return Tui(WelcomeScreen())
+
+
+@pytest.fixture
+def user(mocker) -> CurrentUser:
+    api = mocker.patch(
+        "gitlabrador.tui.screens.welcome_screen.GitLabClient", autospec=True
+    )
+    user = CurrentUser(id="U1", username="user", name="User")
+    api.get_current_user.return_value = user
+    return user
 
 
 @pytest.mark.asyncio
-async def test_screen_no_recent_projects(mocker, mocked_settings):
+async def test_screen_no_recent_projects(user, tui, mocker, mocked_settings):
     mocker.patch("gitlabrador.tui.screens.welcome_screen.settings", new=mocked_settings)
-    mocker.patch("gitlabrador.tui.screens.welcome_screen.GitLabClient", autospec=True)
 
-    app = Tui()
-    async with app.run_test() as pilot:
+    async with tui.run_test() as pilot:
         # Wait for all the events to be handled
         await pilot.pause()
 
-        recents_list: OptionList = app.get_widget_by_id("recent-projects", OptionList)
+        recents_list: OptionList = tui.get_widget_by_id("recent-projects", OptionList)
         assert recents_list is not None
         assert recents_list.is_disabled is True
 
 
 @pytest.mark.asyncio
-async def test_screen_has_recent_projects(mocker, mocked_settings):
+async def test_screen_has_recent_projects(user, tui, mocker, mocked_settings):
     recent_projects = [
         {
             "timestamp": "2024-10-26T09:12:08.041492",
@@ -62,14 +76,12 @@ async def test_screen_has_recent_projects(mocker, mocked_settings):
     ]
     mocked_settings.update({"app": {"recent_projects": recent_projects}}, merge=True)
     mocker.patch("gitlabrador.tui.screens.welcome_screen.settings", new=mocked_settings)
-    mocker.patch("gitlabrador.tui.screens.welcome_screen.GitLabClient", autospec=True)
 
-    app = Tui()
-    async with app.run_test() as pilot:
+    async with tui.run_test() as pilot:
         # Wait for all the events to be handled
         await pilot.pause()
 
-        recents_list: OptionList = app.get_widget_by_id("recent-projects", OptionList)
+        recents_list: OptionList = tui.get_widget_by_id("recent-projects", OptionList)
         assert recents_list is not None
         assert recents_list.is_disabled is False
         assert recents_list.option_count == len(recent_projects)

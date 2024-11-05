@@ -11,10 +11,13 @@ class Tui(App):
     BINDINGS = [("q", "quit", "Quit")]
     CSS_PATH = ["css/global.tcss", "css/welcome_screen.tcss"]
 
-    def __init__(self):
+    def __init__(self, initial_screen=None):
         super().__init__()
         validate_settings()
         self.dark = True
+        self.initial_screen = (
+            WelcomeScreen() if initial_screen is None else initial_screen
+        )
 
     def on_mount(self):
-        self.push_screen(WelcomeScreen())
+        self.push_screen(self.initial_screen)
